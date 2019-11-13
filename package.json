@@ -1,0 +1,47 @@
+{
+  "name": "oas3-parser",
+  "version": "1.0.0",
+  "description": "OpenAPI v3 Specification parser",
+  "author": "Ferenc Sticza <sticza.ferenc@gmail.com>",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --ignore '*.spec.js' localhost 3001",
+    "start": "node --inspect index.js",
+    "test": "npx ava --verbose",
+    "watch": "npm test -- --watch",
+    "coverage": "npx nyc npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:fsticza/oas3-parser.git"
+  },
+  "keywords": [
+    "OpenAPI",
+    "OAS3",
+    "parser"
+  ],
+  "bugs": {
+    "url": "https://github.com/fsticza/oas3-parser/issues"
+  },
+  "homepage": "https://github.com/fsticza/oas3-parser",
+  "dependencies": {
+    "ajv": "^6.10.2",
+    "json-schema-ref-parser": "^7.1.2"
+  },
+  "devDependencies": {
+    "ava": "^2.4.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-register": "^6.26.0",
+    "eslint": "^6.6.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "nodemon": "^1.19.4",
+    "nyc": "^14.1.1"
+  },
+  "engines": {
+    "node": ">= 10.0.0",
+    "npm": ">= 6.0.0"
+  }
+}
