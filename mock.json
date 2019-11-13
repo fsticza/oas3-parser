@@ -2,12 +2,12 @@
   "openapi": "3.0.1",
   "info": {
     "version": "1.0.0",
-    "title": "Powershare",
-    "description": "Powershare OpenAPI 3.0.1 specification",
+    "title": "Test",
+    "description": "Test OpenAPI 3.0.1 specification",
     "contact": {
       "name": "Dev Team",
-      "email": "dev@ocoord.com",
-      "url": "https://occooord.com/contact"
+      "email": "dev@test.com",
+      "url": "https://test.com/contact"
     },
     "license": {
       "name": "MIT",
@@ -16,15 +16,15 @@
   },
   "servers": [
     {
-      "url": "https://ps-api.cm/api",
-      "description": "Stationion environment"
+      "url": "https://test.com/api",
+      "description": "Live environment"
     },
     {
-      "url": "https://test.ps-api.cm/api",
+      "url": "https://test.test.com/api",
       "description": "Test environment"
     },
     {
-      "url": "https://dev.ps-api.cm/api",
+      "url": "https://dev.test.com/api",
       "description": "Development environment"
     }
   ],
@@ -196,156 +196,6 @@
           }
         }
       }
-    },
-    "/stations": {
-      "get": {
-        "tags": [
-          "station"
-        ],
-        "description": "List stations",
-        "operationId": "listStations",
-        "parameters": [
-          {
-            "name": "filter",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Station list",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Station"
-                  }
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "station"
-        ],
-        "description": "Create new Station",
-        "operationId": "createStation",
-        "requestBody": {
-          "description": "Station payload",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewStation"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "station response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Station"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/stations/{name}-{id}": {
-      "get": {
-        "tags": [
-          "station"
-        ],
-        "description": "Show stations",
-        "operationId": "showStation",
-        "parameters": [
-          {
-            "name": "name",
-            "in": "path",
-            "description": "name of station",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of station",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Station list",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Station"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
     }
   },
   "components": {
@@ -437,111 +287,6 @@
           "expiry": {
             "type": "string",
             "format": "date-time"
-          }
-        }
-      },
-      "Station": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/NewStation"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              }
-            }
-          }
-        ]
-      },
-      "NewStation": {
-        "required": [
-          "title",
-          "description",
-          "locations",
-          "addr",
-          "kind",
-          "limit"
-        ],
-        "properties": {
-          "title": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string"
-          },
-          "location": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Location"
-            }
-          },
-          "kind": {
-            "type": "string",
-            "enum": [
-              "science",
-              "health"
-            ]
-          },
-          "limit": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "attendees": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Account"
-            }
-          }
-        }
-      },
-      "Location": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/GeoLocation"
-          }
-        ],
-        "required": [
-          "street",
-          "city",
-          "state",
-          "zip"
-        ],
-        "properties": {
-          "street": {
-            "type": "string",
-            "example": "12345 El Monte Road"
-          },
-          "city": {
-            "type": "string",
-            "example": "Los Altos Hills"
-          },
-          "state": {
-            "type": "string",
-            "example": "CA"
-          },
-          "zip": {
-            "type": "string",
-            "example": "94022"
-          }
-        }
-      },
-      "GeoLocation": {
-        "required": [
-          "latitude",
-          "longitue"
-        ],
-        "properties": {
-          "latitude": {
-            "type": "number",
-            "format": "double"
-          },
-          "longitude": {
-            "type": "number",
-            "format": "double"
           }
         }
       },
